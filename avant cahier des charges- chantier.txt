@@ -1,0 +1,264 @@
+# Projet Open Source : Universal Local AI Benchmark & Recommendation System
+
+## Vision du projet
+
+Créer une plateforme libre, open source et communautaire permettant à n'importe quel utilisateur de déterminer automatiquement quels modèles d'intelligence artificielle locaux sont les plus adaptés à sa machine.
+
+L'objectif est de démocratiser l'IA locale en permettant à chacun, même avec du matériel ancien ou modeste, de trouver les modèles offrant le meilleur compromis entre performances, qualité, consommation de ressources et rapidité.
+
+Le projet doit fonctionner sur Linux, Windows, macOS, Raspberry Pi, mini-PC, anciens ordinateurs portables, serveurs, NAS, SBC ARM et potentiellement tout appareil capable d'exécuter un moteur d'inférence local.
+
+À terme, la plateforme devra devenir une base de données communautaire mondiale permettant de savoir instantanément quels modèles sont recommandés pour une configuration donnée.
+
+---
+
+# Objectifs principaux
+
+## Détection automatique du matériel
+
+Le logiciel doit analyser automatiquement :
+
+* CPU
+* Architecture (x86, x64, ARM, RISC-V)
+* Nombre de cœurs
+* Nombre de threads
+* Fréquence CPU réelle
+* Instructions supportées (SSE, AVX, AVX2, AVX512, etc.)
+* RAM totale
+* RAM libre
+* RAM disponible
+* Swap total
+* Swap disponible
+* GPU
+* VRAM
+* Stockage
+* Système d'exploitation
+* Version du noyau
+* Température
+* Consommation énergétique (si disponible)
+
+---
+
+# Découverte des modèles IA
+
+Le logiciel doit être capable de :
+
+* Interroger automatiquement plusieurs catalogues publics
+* Découvrir les modèles compatibles
+* Télécharger les métadonnées
+* Récupérer les licences
+* Récupérer les tailles
+* Identifier les besoins mémoire estimés
+* Identifier les besoins CPU/GPU estimés
+
+Sources potentielles :
+
+* Ollama
+* Hugging Face
+* llama.cpp
+* LM Studio
+* GPT4All
+* OpenRouter
+* KoboldCPP
+* vLLM
+* MLX
+* autres plateformes compatibles
+
+---
+
+# Sélection intelligente
+
+Le logiciel doit proposer plusieurs stratégies :
+
+### Mode rapide
+
+Trouver le meilleur modèle utilisable immédiatement.
+
+### Mode équilibré
+
+Trouver le meilleur compromis :
+
+* qualité
+* vitesse
+* mémoire
+
+### Mode qualité maximale
+
+Chercher le meilleur modèle possible.
+
+### Mode expérimental
+
+Tester tous les modèles compatibles.
+
+### Mode communautaire
+
+Tester uniquement les modèles recommandés par la communauté.
+
+---
+
+# Téléchargement automatique
+
+Le logiciel doit pouvoir :
+
+* télécharger un modèle
+* vérifier son intégrité
+* mesurer sa taille réelle
+* l'installer automatiquement
+
+---
+
+# Benchmark automatique
+
+Pour chaque modèle :
+
+## Mesures système
+
+* RAM consommée
+* Swap consommé
+* Charge CPU
+* Charge GPU
+* Température
+* Temps de chargement
+
+## Mesures IA
+
+* Temps avant premier token
+* Tokens par seconde
+* Temps total de réponse
+* Longueur maximale de contexte
+* Temps de traitement image
+* Temps de traitement document
+* Temps de traitement audio
+
+---
+
+# Évaluation qualitative
+
+Le système doit disposer d'un jeu de tests standardisé :
+
+## Raisonnement
+
+* logique
+* mathématiques
+* déduction
+
+## Programmation
+
+* Python
+* C
+* Bash
+* JavaScript
+
+## Langues
+
+* français
+* anglais
+* multilingue
+
+## Connaissances générales
+
+* histoire
+* sciences
+* informatique
+
+## Résumé de documents
+
+## Analyse de fichiers
+
+## Vision (si applicable)
+
+---
+
+# Système de notation
+
+Chaque modèle reçoit :
+
+* score qualité
+* score vitesse
+* score mémoire
+* score énergie
+* score compatibilité
+* score communautaire
+
+Puis :
+
+Score Global = combinaison pondérée des critères.
+
+---
+
+# Gestion automatique des modèles
+
+Selon les préférences utilisateur :
+
+* conserver le modèle
+* archiver le modèle
+* supprimer le modèle
+* conserver uniquement le Top N
+
+Exemples :
+
+* conserver les 5 meilleurs
+* conserver uniquement le meilleur
+* supprimer les modèles trop lents
+* supprimer les modèles dépassant une limite mémoire
+
+---
+
+# Base de données communautaire
+
+Les utilisateurs peuvent choisir de partager anonymement :
+
+* configuration matérielle
+* résultats de benchmark
+* scores obtenus
+* consommation mémoire
+* vitesse observée
+
+Aucune donnée personnelle ne doit être collectée.
+
+---
+
+# Intelligence collective
+
+Lorsque plusieurs centaines ou milliers de personnes auront participé :
+
+Le système pourra répondre automatiquement :
+
+"Pour un Intel i3-2310M avec 16 Go de RAM sous Linux, les modèles les plus performants sont :"
+
+avec des résultats issus de données réelles.
+
+---
+
+# Classements mondiaux
+
+Top modèles par :
+
+* CPU ancien
+* CPU moderne
+* Raspberry Pi
+* Mini-PC
+* GPU NVIDIA
+* GPU AMD
+* GPU Intel
+* RAM limitée
+* Très faible consommation énergétique
+
+---
+
+# Objectif long terme
+
+Créer le plus grand observatoire open source mondial des performances réelles des modèles IA locaux.
+
+Permettre à n'importe qui, quel que soit son matériel, de trouver automatiquement l'IA la plus adaptée à sa machine.
+
+Le projet doit rester :
+
+* libre
+* open source
+* transparent
+* communautaire
+* multiplateforme
+* indépendant des fournisseurs commerciaux
+
+Par la communauté, pour la communauté.
