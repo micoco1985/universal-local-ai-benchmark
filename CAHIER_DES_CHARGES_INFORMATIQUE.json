@@ -1,0 +1,117 @@
+{
+  "vision": "Créer une plateforme libre, open source et communautaire permettant à n'importe quel utilisateur de déterminer automatiquement quels modèles d'intelligence artificielle locaux sont les plus adaptés à sa machine, même avec du matériel ancien ou modeste.",
+  "objectives": [
+    "Détection automatique du matériel (CPU, RAM, GPU, stockage, OS, température, consommation énergétique)",
+    "Découverte des modèles IA via catalogues publics (Ollama, Hugging Face, llama.cpp, LM Studio, GPT4All, OpenRouter, KoboldCPP, vLLM, MLX, etc.)",
+    "Sélection intelligente avec plusieurs stratégies (rapide, équilibré, qualité maximale, expérimental, communautaire)",
+    "Téléchargement automatique avec vérification d'intégrité",
+    "Benchmark automatique (mesures système et mesures IA)",
+    "Évaluation qualitative via jeu de tests standardisé (raisonnement, programmation, langues, connaissances générales, résumé de documents, analyse de fichiers, vision)",
+    "Système de notation (score qualité, vitesse, mémoire, énergie, compatibilité, communauté) et score global pondéré",
+    "Gestion automatique des modèles (conserver, archiver, supprimer, garder Top N)",
+    "Base de données communautaire de résultats anonymisés",
+    "Intelligence collective pour répondre à des requêtes de recommandation matérielle",
+    "Classements mondiaux par catégorie de matériel",
+    "Objectif long terme : plus grand observatoire open source mondial des performances réelles des modèles IA locaux"
+  ],
+  "features": {
+    "hardware_detection": {
+      "methods": ["lscpu", "dmidecode", "lsblk", "free", "nvidia-smi", "rocminfo", "glxinfo", "vcgencmd", "psutil", "GPUtil", "cpuinfo"],
+      "output_format": "JSON",
+      "normalized_values": true
+    },
+    "model_catalogue": {
+      "sources": ["Ollama", "Hugging Face", "llama.cpp", "LM Studio", "GPT4All", "OpenRouter", "KoboldCPP", "vLLM", "MLX"],
+      "filtering": "exclude proprietary/paid models unless user explicitly enables",
+      "caching": "metadata cache (name, size, licence, architecture, quantisation, download URL)",
+      "configurability": "add/remove sources via configuration file"
+    },
+    "selection_strategies": {
+      "modes": ["rapide", "équilibré", "qualité maximale", "expérimental", "communautaire"],
+      "custom_thresholds": ["RAM max", "temps de réponse max", "consommation énergie max"]
+    },
+    "download_integrity": {
+      "method": "parallel download with resumability (curl/wget or HTTP library)",
+      "checksum": "SHA256 verification when provided",
+      "storage_path": "~/.local-ai-benchmark/models/"
+    },
+    "benchmark": {
+      "metrics_system": ["RAM consumed", "Swap consumed", "CPU load", "GPU load", "temperature", "load time"],
+      "metrics_ia": ["time to first token", "tokens per second", "total response time", "max context length", "image processing time", "document processing time", "audio processing time"],
+      "warmup": "few inferences to stabilize frequencies",
+      "timing_precision": "time.perf_counter",
+      "resource_monitoring": "psutil",
+      "report_format": "JSON + optional markdown"
+    },
+    "qualitative_evaluation": {
+      "test_suite_location": "tests/",
+      "domains": ["reasoning (logic, maths, deduction)", "programming (Python, C, Bash, JS)", "languages (FR, EN, multilingual)", "general knowledge (history, science, IT)", "document summarisation", "file analysis", "vision (if applicable)"],
+      "evaluation_method": "model inference, answer collection, comparison to reference (accuracy, rough BLEU, etc.)",
+      "community_extensibility": "yes"
+    },
+    "scoring_system": {
+      "criteria": ["quality", "speed", "memory", "energy", "compatibility", "community"],
+      "score_range": "0-100 (normalized)",
+      "global_score": "weighted sum (default weights: quality 30%, speed 25%, memory 20%, energy 15%, community 10%)",
+      "configurable_weights": "yes"
+    },
+    "model_management": {
+      "actions": ["keep", "archive", "delete", "keep Top N"],
+      "user_preferences": "configurable"
+    },
+    "community_database": {
+      "data_shared_anonymously": ["hardware configuration", "benchmark results", "scores", "memory usage", "observed speed"],
+      "no_personal_data": true,
+      "endpoint_type": "simple HTTP/JSON-Lines or static files",
+      "aggregation": "means, medians, standard deviations per hardware profile"
+    },
+    "intelligence_collective": {
+      "query_example": "Pour un Intel i3-2310M avec 16 Go de RAM sous Linux, les modèles les plus performants sont …",
+      "response_basis": "aggregated community results"
+    },
+    "rankings": {
+      "categories": ["CPU ancien", "CPU moderne", "Raspberry Pi", "Mini-PC", "GPU NVIDIA", "GPU AMD", "GPU Intel", "RAM limitée", "faible consommation énergétique"],
+      "output_format": "markdown tables regenerated periodically (cron or GitHub Actions)"
+    },
+    "recommendation_endpoint": {
+      "input": "hardware profile",
+      "output": "Top N models from community database"
+    }
+  },
+  "non_functional_constraints": {
+    "licence": "MIT or Apache-2.0",
+    "gratuit": "only free/open-source models and tools by default; no paid model/service without explicit user consent",
+    "multiplateforme": ["Linux (main distros)", "Windows", "macOS", "Raspberry Pi (ARM)", "other SBC"],
+    "confidentiality": "no personal data collected or transmitted without explicit anonymisation",
+    "extensibility": "plugin-style architecture for adding new model sources, benchmarks, inference engines",
+    "performance": {
+      "detector_scheduler": {
+        "max_ram": "<50 MB",
+        "max_startup_time": "<2 s"
+      }
+    }
+  },
+  "deliverables": [
+    "Source code on GitHub (repo universal-local-ai-benchmark)",
+    "Documentation (README.md, CONTRIBUTING.md, licence)",
+    "Installation scripts (shell script or make)",
+    "Platform packages (AppImage, .exe, Homebrew, Chocolatey)",
+    "Community dashboard (GitHub Pages or similar) showing rankings and allowing result submission",
+    "Basic CI/CD (GitHub Actions) verifying hardware detector and a tiny model benchmark (e.g., TinyLlama or phi-2) on every push"
+  ],
+  "roadmap": [
+    {"phase": "0 – Init", "goal": "Repo, licence, README, .gitignore", "time": "1 week"},
+    {"phase": "1 – Hardware detection", "goal": "HW module outputting JSON", "time": "2 weeks"},
+    {"phase": "2 – Model catalogue", "goal": "Connectors for Ollama, HF, llama.cpp + cache", "time": "3 weeks"},
+    {"phase": "3 – Selection strategies", "goal": "Quick/balanced/max-quality modes", "time": "2 weeks"},
+    {"phase": "4 – Download & integrity", "goal": "Resumable download, SHA check", "time": "2 weeks"},
+    {"phase": "5 – Basic benchmark", "goal": "Launch a simple model, measure tokens/s", "time": "3 weeks"},
+    {"phase": "6 – Qualitative tests", "goal": "Reasoning & programming test suite", "time": "3 weeks"},
+    {"phase": "7 – Scoring system", "goal": "Scores, weighted aggregate, config", "time": "2 weeks"},
+    {"phase": "8 – Community DB", "goal": "Submission API, simple aggregation", "time": "3 weeks"},
+    {"phase": "9 – Rankings & recs", "goal": "Generate tables, recommendation endpoint", "time": "2 weeks"},
+    {"phase": "10 – Packaging & CI/CD", "goal": "Multiplatform builds, automated tests", "time": "2 weeks"},
+    {"phase": "11 – Docs & community outreach", "goal": "Guides, tutorials, call for contributors", "time": "ongoing"}
+  ],
+  "total_estimated_time": "≈ 6 months for a usable first version, followed by iterative improvements driven by community feedback"
+}
